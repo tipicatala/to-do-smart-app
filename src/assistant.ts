@@ -1,0 +1,13 @@
+import { createSmartappDebugger, createAssistant } from '@sberdevices/assistant-client'
+
+export const initializeAssistant = (getState: () => any) => {
+  if (process.env.NODE_ENV === "development") {
+    return createSmartappDebugger({
+      token: process.env.REACT_APP_TOKEN ?? 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmZjAwMTEzOTgwN2EyODgzOTVhNjBjODdlYjgwMjM2YWU3MTU3YzQzYmEzZTljYWNmNGM5ZTI4NGVkNWI5Mjg5YzMyNTIiLCJhdWQiOiJWUFMiLCJleHAiOjE2NTAwMTY1ODUsImlhdCI6MTY0OTkzMDE3NSwiaXNzIjoiS0VZTUFTVEVSIiwidHlwZSI6IkJlYXJlciIsImp0aSI6ImYxNmY5MzU5LTNmODUtNGY4MS05NWQyLTNmNmUyZWUwMDRlNiIsInNpZCI6IjVkNzQ1OTVlLThlZTYtNDFlOC1hZjVkLWVlMTQ2NGNmNmEwOCJ9.BxGuAefOkPdk9zcPgToZs7cbiS8yJHbVmMKWTedMWGti8Fl9tGSRUWRY9dZHr2PkXM1knXIUhBQfVGeezvQ4A9jTLceqKOvObnymPx6eH5isAdD2nMG-E-a7Xi31lJwBbISyUDzvA08WuLkxxPjpUJdcaptbLTQDM0LJZDT0_SYaJfKPTj30HboPoVcuvHazqvKddgH8repFWZQkMtdiQWhDwX8vZVu1MmKTVS06Iob3__g3T5a31K9GNHwxPhpywbm-j8PrhWp7n1E5EJDxsrE67vWjOlMTkhM-_SUBJI1zya6QyjNXlulUudy4IYQ1y2VLbO2g7unNqdAIVrU9wZgnH15iPCmft0trVwDkPWDThMkszSJtx1naTia5AaiH_uuOhVDiueAkoxN2Fs3ynq2sX-HCAxKYorKy-yB3VyvG1X2Efo5pYt0nv7YBa1NSDKELymSPRk1WbFqZRXFLU68IhDr9U0L52FvOCn81CwLDd-VCvO0_ggVXVuLmhuwztaDqdYzX5t4HrJpyEVGge-8rQlHo0WUIGOGYRvzf_8q1loyNlKzXWmVsibbUtt4_XvqmuVZ2sXKAvAJnDdlXquWjubp8sIIEAeQxlR3M6KPtlTK5xvjrgEnRmOAB81ox8NyyA0dGTFD2ksN-pdS7D5LDrl-3OCROEpk5kO3tMfw',
+      initPhrase: `Запусти ${process.env.REACT_APP_SMARTAPP}`,
+      getState
+    });
+  }
+
+  return createAssistant({ getState })
+};

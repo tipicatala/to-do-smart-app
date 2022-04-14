@@ -1,4 +1,13 @@
-export const notes = (state, action) => {
+type State = {
+  notes: [{ id?: string, completed?: boolean }]
+}
+
+type Action = {
+  type: string,
+  id: string,
+}
+
+export const notes = (state: any, action: any) => {
   switch (action.type) {
     case "add_note":
       return {
@@ -16,7 +25,7 @@ export const notes = (state, action) => {
     case "done_note":
       return {
         ...state,
-        notes: state.notes.map((note) =>
+        notes: state.notes.map((note: { id: string, completed: boolean}) =>
           note.id === action.id ? { ...note, completed: !note.completed } : note
         ),
       };
@@ -24,7 +33,7 @@ export const notes = (state, action) => {
     case "delete_note":
       return {
         ...state,
-        notes: state.notes.filter(({ id }) => id !== action.id),
+        notes: state.notes.filter(({ id=0 }) => id !== action.id),
       };
 
     default:
